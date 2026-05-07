@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #153e3b;
-  --primary-light: #2d545d;
+  --primary-color: #0D2421;
+  --primary-light: #153E3B;
+  --gold: #C9A84C;
 }
 
 * {
@@ -18,8 +19,8 @@ html {
 body {
   margin: 0;
   font-family: "Inter", system-ui, sans-serif;
-  background-color: #f4f4f5; /* surface-100 */
-  color: #18181b; /* surface-900 */
+  background-color: #F5F6F8;
+  color: #18181b;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,73 +28,72 @@ body {
 
 /* ── Custom Scrollbar ─────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
+  background: #d1d5db;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
+  background: #9ca3af;
 }
 
 /* ── Leaflet map fix ───────────────────────── */
 .leaflet-container {
-  background: #fafafa;
+  background: #f9fafb;
   font-family: "Inter", system-ui, sans-serif;
-  border-radius: 0.5rem;
-  border: 1px solid #e4e4e7;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
 }
 
-/* ── Professional Component Classes ──────────────── */
+/* ── Component Classes ──────────────────────────── */
 @layer components {
-  /* Replace glassmorphism with crisp enterprise cards */
   .glass-card {
-    @apply bg-white border border-surface-200 rounded-lg shadow-sm;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
-  }
-
-  .glass-card:hover {
-    @apply shadow-md border-surface-300;
+    @apply bg-white border border-gray-200 rounded-xl shadow-sm;
   }
 
   .input-field {
-    @apply w-full bg-white border border-surface-300 rounded-md px-3 py-2.5
-           text-surface-900 text-sm placeholder-surface-400 shadow-sm
-           focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600
-           transition-colors duration-200 disabled:bg-surface-50 disabled:text-surface-500;
+    @apply w-full bg-white border border-gray-300 rounded-lg px-3 py-2.5
+           text-gray-900 text-sm placeholder-gray-400
+           focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20
+           transition-colors duration-150 disabled:bg-gray-50 disabled:text-gray-400;
   }
 
   .label {
-    @apply block text-sm font-medium text-surface-700 mb-1.5;
+    @apply block text-sm font-medium text-gray-700 mb-1.5;
   }
 
   .btn-primary {
-    @apply bg-brand-900 text-white font-medium rounded-md px-4 py-2.5
-           shadow-sm hover:bg-brand-800 focus:outline-none focus:ring-2 
-           focus:ring-brand-900 focus:ring-offset-2
-           transition-colors duration-200 flex items-center justify-center gap-2 text-sm;
+    @apply text-white font-semibold rounded-lg px-4 py-2.5
+           shadow-sm focus:outline-none focus:ring-2
+           focus:ring-brand-900/40 focus:ring-offset-2
+           transition-all duration-150 flex items-center justify-center gap-2 text-sm;
+    background-color: #0D2421;
+  }
+
+  .btn-primary:hover {
+    background-color: #153E3B;
   }
 
   .btn-primary:disabled {
-    @apply opacity-60 cursor-not-allowed bg-brand-700 hover:bg-brand-700;
+    @apply opacity-50 cursor-not-allowed;
   }
 
   .btn-secondary {
-    @apply bg-white text-surface-700 font-medium rounded-md px-4 py-2.5
-           border border-surface-300 shadow-sm hover:bg-surface-50 hover:text-surface-900
-           focus:outline-none focus:ring-2 focus:ring-brand-900 focus:ring-offset-2
-           transition-colors duration-200 flex items-center justify-center gap-2 text-sm;
+    @apply bg-white text-gray-700 font-medium rounded-lg px-4 py-2.5
+           border border-gray-300 shadow-sm hover:bg-gray-50 hover:text-gray-900
+           focus:outline-none focus:ring-2 focus:ring-brand-900/20 focus:ring-offset-2
+           transition-colors duration-150 flex items-center justify-center gap-2 text-sm;
   }
 
   .btn-ghost {
-    @apply text-surface-600 hover:text-surface-900 font-medium rounded-md px-3 py-2
-           hover:bg-surface-100 focus:outline-none focus:ring-2 focus:ring-brand-900 focus:ring-offset-1
-           transition-colors duration-200 flex items-center gap-2 text-sm;
+    @apply text-gray-500 hover:text-gray-900 font-medium rounded-lg px-3 py-2
+           hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-900/20
+           transition-colors duration-150 flex items-center gap-2 text-sm;
   }
 
   .badge {
@@ -101,13 +101,19 @@ body {
   }
 
   .dropzone {
-    @apply border-2 border-dashed border-surface-300 rounded-lg p-8 text-center
-           hover:border-brand-600 hover:bg-brand-50 cursor-pointer
-           transition-colors duration-200 bg-surface-50;
+    @apply border-2 border-dashed border-gray-200 rounded-xl p-8 text-center
+           cursor-pointer transition-colors duration-200;
+    background-color: rgba(249, 250, 251, 0.5);
+  }
+
+  .dropzone:hover {
+    border-color: #C9A84C;
+    background-color: rgba(254, 252, 232, 0.3);
   }
 
   .dropzone.active {
-    @apply border-brand-600 bg-brand-100;
+    border-color: #C9A84C;
+    background-color: rgba(254, 252, 232, 0.5);
   }
 
   .data-table {
@@ -115,20 +121,19 @@ body {
   }
 
   .data-table th {
-    @apply px-4 py-3 text-xs font-medium text-surface-500 uppercase tracking-wider bg-surface-50 border-b border-surface-200;
+    @apply px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50 border-b border-gray-200;
   }
 
   .data-table td {
-    @apply px-4 py-3 text-surface-900 border-b border-surface-100;
+    @apply px-4 py-3.5 text-gray-800 border-b border-gray-100 text-sm;
   }
 
   .data-table tr:hover td {
-    @apply bg-surface-50;
+    background-color: #F9FAFB;
   }
 
-  /* Keep shimmer for skeleton loading but make it very subtle */
   .shimmer {
-    background: linear-gradient(90deg, #f4f4f5 25%, #e4e4e7 50%, #f4f4f5 75%);
+    background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }
@@ -146,14 +151,18 @@ body {
   }
 }
 
-/* ── Professional Animations ────────────────────────── */
+/* ── Animations ────────────────────────────── */
 @layer utilities {
   .animate-fadeIn {
-    animation: fadeIn 0.4s ease-out forwards;
+    animation: fadeIn 0.3s ease-out forwards;
   }
 
   .animate-slideUp {
-    animation: slideUp 0.4s ease-out forwards;
+    animation: slideUp 0.35s ease-out forwards;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.25s ease-out forwards;
   }
 
   @keyframes fadeIn {
@@ -162,7 +171,12 @@ body {
   }
 
   @keyframes slideUp {
-    0% { opacity: 0; transform: translateY(10px); }
+    0% { opacity: 0; transform: translateY(8px); }
     100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    0% { opacity: 0; transform: scale(0.97); }
+    100% { opacity: 1; transform: scale(1); }
   }
 }

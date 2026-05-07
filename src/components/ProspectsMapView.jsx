@@ -9,7 +9,7 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { getAllProjects } from "../services/projectService";
+import { getAllProjects, getCollectionForType } from "../services/projectService";
 import { formatAcres } from "../utils/areaConverter";
 import {
   RefreshCw,
@@ -293,7 +293,7 @@ function ProjectCard({
 }
 
 // ── Main component ─────────────────────────────────────────────────────────────
-export default function ProspectsMapView({ onViewProject }) {
+export default function ProspectsMapView({ onViewProject, propertyType = "residential" }) {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -305,14 +305,14 @@ export default function ProspectsMapView({ onViewProject }) {
     setLoading(true);
     setError("");
     try {
-      const data = await getAllProjects();
+      const data = await getAllProjects(getCollectionForType(propertyType));
       setProjects(data);
     } catch (err) {
       setError(err.message || "Failed to load projects.");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [propertyType]);
 
   useEffect(() => {
     load();

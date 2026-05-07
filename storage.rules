@@ -1,0 +1,22 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/{allPaths=**} {
+    allow read, write: if request.auth != null;
+  }
+  
+  // Allow public read access to project files
+  match /projects/{projectId}/{category}/{fileName} {
+    allow read: if true;
+    allow write: if request.auth != null;
+  }
+  
+  // Allow authenticated users to write files
+  match /projects/{projectId}/{allPaths=**} {
+    allow read, write: if request.auth != null;
+  }
+  
+  // Set CORS headers for downloads
+  match /projects/{projectId}/{category}/{fileName} {
+    allow read: if true;
+  }
+}
